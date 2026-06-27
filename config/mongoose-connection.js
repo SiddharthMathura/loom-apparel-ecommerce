@@ -9,3 +9,5 @@ mongoose
 .catch((error) => {
     console.log(`Mongo DB connection error : ${error}`);
 });
+
+module.exports = mongoose.connection;
