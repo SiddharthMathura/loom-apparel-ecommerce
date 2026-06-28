@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/register-login.css">
+    <title>Register / Login</title>
+</head>
+<body>
+    <div class="main">
+        <!-- register -->
+        <div class="form">
+            <div class="header">
+                <h1>Register User</h1>
+            </div>
+            <form action="/register" method="post">
+                <div class="formContent">
+                    <input type="text" class="userInputs" name="username" placeholder="Username ...">
+                    <input type="email" class="userInputs" name="email" placeholder="Email ...">
+                    <input type="number" class="userInputs no-spinners" name="age" placeholder="Age ...">
+                    <input type="password" class="userInputs" name="password" placeholder="Password ...">
+                    <input type="submit" class="submit" value="Register User">
+                </div>
+            </form>
+        </div>
+        <!-- or -->
+        <div class="or">
+            <h3>OR</h3>
+        </div>
+        <!-- login -->
+        <div class="form">
+            <div class="header">
+                <h1>Login User</h1>
+            </div>
+            <form action="/login" method="post">
+                <div class="formContent">
+                    <input type="email" class="userInputs" name="email" placeholder="Email ...">
+                    <input type="password" class="userInputs" name="password" placeholder="Password ...">
+                    <input type="submit" class="submit" value="Login User">
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
