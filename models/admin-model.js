@@ -12,6 +12,7 @@ const adminSchema = mongoose.Schema({
     },
     profilePicture: {
         type: String,
+        default: 'defaultProfilePicture.PNG'
     },
     products: {
         type: Array,
@@ -19,4 +20,4 @@ const adminSchema = mongoose.Schema({
     }
 });
 
-module.exports = mongoose.Model('admin' , adminSchema);
+module.exports = mongoose.model('admin' , adminSchema);

@@ -1,13 +1,14 @@
 const mongoose = require('mongoose');
-require('dotenv').config();
+const config = require('config');
+const dbgr = require('debug')('development:mongoose');
 
 mongoose
-.connect(process.env.MONGODB_URI)
+.connect(`${config.get("MONGODB_URI")}/ecommerce_mini_project`)
 .then(() => {
-    console.log(`Mongo DB connected ...`);
+    dbgr(`Mongo DB connected ...`);
 })
 .catch((error) => {
-    console.log(`Mongo DB connection error : ${error}`);
+    dbgr(`Mongo DB connection error : ${error}`);
 });
 
 module.exports = mongoose.connection;
