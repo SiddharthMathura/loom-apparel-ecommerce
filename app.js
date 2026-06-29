@@ -6,6 +6,7 @@ const userRouter = require('./routes/userRouter');
 const adminRouter = require('./routes/adminRouter');
 const productRouter = require('./routes/productRouter');
 const landingPageRouter = require('./routes/landingPageRouter');
+require('dotenv').config();
 
 const app = express();
 
