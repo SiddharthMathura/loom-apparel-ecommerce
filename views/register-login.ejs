@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/stylesheets/register-login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <title>Register / Login</title>
 </head>
 <body>
@@ -13,13 +14,21 @@
             <div class="header">
                 <h1>Register User</h1>
             </div>
-            <form action="/register" method="post">
+            <form action="/register" method="post" id="registerForm">
                 <div class="formContent">
-                    <input type="text" class="userInputs" name="username" placeholder="Username ...">
-                    <input type="email" class="userInputs" name="email" placeholder="Email ...">
-                    <input type="number" class="userInputs no-spinners" name="age" placeholder="Age ...">
-                    <input type="password" class="userInputs" name="password" placeholder="Password ...">
-                    <input type="submit" class="submit" value="Register User">
+                    <input type="text" class="userInputs" name="fullname" id="fullname" placeholder="Full Name ...">
+                        <% if (registerErrors.fullname) { %>
+                            <span style="color: #ed3232;"><%= registerErrors.fullname %></span>
+                        <% } %>
+                    <input type="email" class="userInputs" name="email" id="registerEmail" placeholder="Email ...">
+                        <% if (registerErrors.email) { %>
+                            <span style="color: #ed3232;"><%= registerErrors.email %></span>
+                        <% } %>
+                    <input type="password" class="userInputs" name="password" id="registerPassword" placeholder="Password ...">
+                        <% if (registerErrors.password) { %>
+                            <span style="color: #ed3232;"><%= registerErrors.password %></span>
+                        <% } %>
+                    <input type="submit" class="submit" id="registerSubmitBtn" value="Register User" disabled style="cursor: not-allowed;">
                 </div>
             </form>
         </div>
@@ -32,14 +41,31 @@
             <div class="header">
                 <h1>Login User</h1>
             </div>
-            <form action="/login" method="post">
+            <form action="/login" method="post" id="loginForm">
                 <div class="formContent">
-                    <input type="email" class="userInputs" name="email" placeholder="Email ...">
-                    <input type="password" class="userInputs" name="password" placeholder="Password ...">
-                    <input type="submit" class="submit" value="Login User">
+                    <input type="email" class="userInputs" name="email" id="loginEmail" placeholder="Email ...">
+                        <% if (loginErrors.email) { %>
+                            <span style="color: #ed3232;"><%= loginErrors.email %></span>
+                        <% } %>
+                    <input type="password" class="userInputs" name="password" id="loginPassword" placeholder="Password ...">
+                        <% if (loginErrors.password) { %>
+                            <span style="color: #ed3232;"><%= loginErrors.password %></span>
+                        <% } %>
+                    <input type="submit" class="submit" id="loginSubmitBtn" value="Login User" disabled style="cursor: not-allowed;">
                 </div>
             </form>
         </div>
     </div>
+    <!-- view shop as guest -->
+    <div class="shop-button-container">
+        <a href="/shop">
+            <button type="submit" class="shop-btn">
+                View Shop 
+                <i class="fa-solid fa-arrow-right-long arrow-icon"></i>
+            </button>
+        </a>
+    </div>
+    <!-- script -->
+     <script src="/javascripts/register-login.js"></script>
 </body>
 </html>
