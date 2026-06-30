@@ -158,7 +158,7 @@ body {
     top: 20px;
     left: 50%;
     transform: translateX(-50%); /* Centers the absolute/fixed element perfectly horizontal */
-    zIndex: 9999; /* Guarantees it sits above all other page content elements */
+    z-index: 9999; /* Guarantees it sits above all other page content elements */
     
     /* Responsive sizing rules */
     width: 90%;          /* Uses almost full width on small mobile screens */
