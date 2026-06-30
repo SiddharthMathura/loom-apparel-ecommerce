@@ -23,7 +23,8 @@ const registerUser = async (req, res) => {
         }
         const existingUser = await userModel.findOne({email: cleanEmail});
         if (existingUser) {
-            return res.status(500).json({message: "User Already Exists."});
+            req.flash('error', 'User Already Exists With This Email.');
+            return res.redirect('/');
         }
         const salt = await bcrypt.genSalt(10);
         const hashPassword = await bcrypt.hash(password, salt);
@@ -57,13 +58,13 @@ const loginUser = async (req, res) => {
         }
         const existingUser = await userModel.findOne({email: cleanEmail});
         if (!existingUser) {
-            return res.status(500).json({message: "Something Went Wrong."})
+            req.flash('error', 'Email Or Password Is Invalid.');
+            return res.redirect('/');
         }
         const isPasswordCorrect = await bcrypt.compare(password, existingUser.password);
         if (!isPasswordCorrect) {
-            return res.status(400).json({
-                message: "Something went wrong...",
-            });
+            req.flash('error', 'Email Or Password Is Invalid.');
+            return res.redirect('/');
         }
         const token = generateJwtToken(existingUser);
         res.cookie('token', token);
@@ -73,5 +74,18 @@ const loginUser = async (req, res) => {
     }
 }
 
+const logoutUser = async (req, res) => {
+    try {
+        res.clearCookie('token');
+        req.flash('success', 'You Have Been Logged Out Successfully.')
+        res.redirect('/');
+    } catch (error) {
+        return res.status(500).json({
+            message: "Internal Server Error occurred.",
+        });
+    }
+}
+
 module.exports.registerUser = registerUser;
 module.exports.loginUser = loginUser;
+module.exports.logoutUser = logoutUser;

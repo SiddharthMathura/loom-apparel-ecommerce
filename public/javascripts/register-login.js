@@ -16,3 +16,11 @@ const formValidation = (formId) => {
 }
 formValidation('registerForm');
 formValidation('loginForm');
+
+// Check if the page was loaded from the browser's back/forward cache
+window.addEventListener('pageshow', function (event) {
+    if (event.persisted) {
+        // Force a complete page reload from the server
+        window.location.reload();
+    }
+});

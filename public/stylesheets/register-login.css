@@ -93,18 +93,6 @@ body {
     color: rgb(120, 120, 120);
 }
 
-/* Chrome, Safari, Edge, Opera: Hide number spinners */
-.no-spinners::-webkit-outer-spin-button,
-.no-spinners::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-/* Firefox: Hide number spinners */
-.no-spinners[type=number] {
-    -moz-appearance: textfield;
-}
-
 /* Container layout adjustment */
 .shop-button-container {
     margin-top: 50px;
@@ -157,6 +145,48 @@ body {
     opacity: 1;
 }
 
+/* Flash messages */
+/* Base styling for all alert boxes */
+.alert {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    /* Responsive position: fixed keeps it anchored correctly relative to the screen */
+    position: fixed; 
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%); /* Centers the absolute/fixed element perfectly horizontal */
+    zIndex: 9999; /* Guarantees it sits above all other page content elements */
+    
+    /* Responsive sizing rules */
+    width: 90%;          /* Uses almost full width on small mobile screens */
+    max-width: 450px;    /* Prevents it from stretching infinitely on wide desktop monitors */
+    min-height: 50px;    /* Use dynamic min-height instead of fixed height to allow text wrapping */
+    padding: 12px 20px;  /* Fluid inner spacing breathing room */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Soft depth layer */
+    
+    /* Text properties */
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-align: center;
+    word-break: break-word; /* Prevents long error strings from clipping out */
+    color: #ffffff; /* Universal readable text contrast */
+}
+
+/* Color state overrides */
+.alert-danger {
+    background-color: #dc3545; /* Clean accessible red tone */
+    border: 1px solid #b21f2d;
+}
+
+.alert-success {
+    background-color: #198754; /* Balanced, accessible deep green tone */
+    border: 1px solid #146c43;
+}
+
 /* Responsive view for small screens */
 @media (max-width: 768px) {
     .main {
@@ -170,5 +200,15 @@ body {
 
     .shop-btn {
         width: 32vw;
+    }
+
+    .alert-danger {
+        width: 80%;
+        height: 4%;
+    }
+
+    .alert-success {
+        width: 80%;
+        height: 4%;
     }
 }
