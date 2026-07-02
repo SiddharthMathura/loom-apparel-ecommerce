@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/stylesheets/register-login.css">
+    <link rel="stylesheet" href="/stylesheets/admin-login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <title>Register / Login</title>
+    <title>Admin Panel</title>
 </head>
 <body>
     <% if (success_msg && success_msg.length > 0) { %>
@@ -20,39 +20,12 @@
             </div>
         <% } %>
     <div class="main">
-        <!-- register -->
-        <div class="form">
-            <div class="header">
-                <h1>Register User</h1>
-            </div>
-            <form action="/users/register" method="post" id="registerForm">
-                <div class="formContent">
-                    <input type="text" class="userInputs" name="fullname" id="fullname" placeholder="Full Name ...">
-                        <% if (registerErrors.fullname) { %>
-                            <span style="color: #ed3232;"><%= registerErrors.fullname %></span>
-                        <% } %>
-                    <input type="email" class="userInputs" name="email" id="registerEmail" placeholder="Email ...">
-                        <% if (registerErrors.email) { %>
-                            <span style="color: #ed3232;"><%= registerErrors.email %></span>
-                        <% } %>
-                    <input type="password" class="userInputs" name="password" id="registerPassword" placeholder="Password ...">
-                        <% if (registerErrors.password) { %>
-                            <span style="color: #ed3232;"><%= registerErrors.password %></span>
-                        <% } %>
-                    <input type="submit" class="submit" id="registerSubmitBtn" value="Register User" disabled style="cursor: not-allowed;">
-                </div>
-            </form>
-        </div>
-        <!-- or -->
-        <div class="or">
-            <h3>OR</h3>
-        </div>
         <!-- login -->
         <div class="form">
             <div class="header">
-                <h1>Login User</h1>
+                <h1>Login Admin</h1>
             </div>
-            <form action="/users/login" method="post" id="loginForm">
+            <form action="/admins/login" method="post" id="loginForm">
                 <div class="formContent">
                     <input type="email" class="userInputs" name="email" id="loginEmail" placeholder="Email ...">
                         <% if (loginErrors.email) { %>
@@ -67,16 +40,18 @@
             </form>
         </div>
     </div>
-    <!-- view shop as guest -->
+    <!-- view admin panel -->
     <div class="shop-button-container">
-        <a href="/shop">
+        <a href="/admins/admin-panel">
             <button type="submit" class="shop-btn">
-                View Shop 
+                Admin Panel 
                 <i class="fa-solid fa-arrow-right-long arrow-icon"></i>
             </button>
         </a>
     </div>
     <!-- script -->
      <script src="/javascripts/register-login.js"></script>
+</body>
+</html>
 </body>
 </html>

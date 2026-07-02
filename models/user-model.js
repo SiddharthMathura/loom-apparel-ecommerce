@@ -15,6 +15,7 @@ const userSchema = mongoose.Schema({
     },
     profilePicture: {
         type: String,
+        default: 'defaultProfilePicture.PNG'
     },
     cart: {
         type: Array,

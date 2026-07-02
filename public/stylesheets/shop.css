@@ -1,0 +1,234 @@
+/* Base Styles */
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    background-color: rgb(24, 24, 24);
+    color: white;
+}
+
+/* Fixed Top Navbar Styling */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 60px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px;
+    z-index: 3; /* Sits above everything, including the sidebar */
+     /* Glossy Frost Recipe */
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.15));
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    
+    /* Glass Highlights & Reflections */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.nav-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #ffffff;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.account-image{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Navbar Toggle Button (Desktop & Mobile view settings) */
+.sidebar-toggle {
+    background: none;
+    border: none;
+    color: #333;
+    font-size: 1.3rem;
+    cursor: pointer;
+    display: none;
+}
+
+/* Layout Containers */
+.main-container {
+    display: flex;
+    min-height: 100vh;
+    padding-top: 60px; /* Offset spacing matching navbar height */
+}
+
+.side-container {
+    position: relative;
+    width: 20vw;
+    background-color: rgb(35, 35, 35);
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+
+.products-container {
+    width: 80vw;
+    padding: 30px 20px;
+}
+
+.side-contents {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+}
+
+.side-contents a{
+    text-decoration: none;
+    color: #ddd;
+    font-size: 0.95rem;
+}
+
+.collection-products {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.filter-products {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: auto;
+    padding-top: 50px;
+}
+
+.products-container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 80vw;
+    padding: 20px;
+}
+
+/* Product Card Wrapper */
+.product {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    width: 100%;
+    min-height: 280px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Full Background Image */
+.product img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+/* Text Content Overlays */
+.product-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end; /* Keeps items anchored to the bottom */
+    padding: 20px;
+    min-height: 280px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2));
+    border-radius: 6px;
+}
+
+/* Left side container holding Name and Price */
+.product-info {
+    font-weight: 500;
+    color: #000000;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* Adds space between name and price */
+}
+
+/* Icons (Right aligned by flex justify-content) */
+.product-content i {
+    z-index: 2;
+    font-size: 1.5rem;
+    color: #000000;
+    cursor: pointer;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0px 15px;
+    }
+    .main-container {
+        position: relative;
+    }
+
+    .side-container {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 200px;
+        height: calc(100vh - 60px);
+        z-index: 3;   /* Forces mobile padding to stay intact */
+        overflow: visible;      /* Prevents content flashing */
+        transform: translateX(0); /* Clean initial open position status */
+    }
+
+     /* Show toggle button on mobile devices */
+    .sidebar-toggle {
+        display: block;
+        padding: 10px;
+        border-radius: 4px;
+    }
+
+    .side-container.collapsed {
+        width: 260px;    /* Forces width to stay stable */
+        padding: 30px 20px; /* Preserves container layout matrix */
+        transform: translateX(-260px); /* Slides the drawer completely off-screen */
+    }
+
+    .products-container {
+        width: 100vw;
+    }
+    
+    .side-contents {
+        display: flex;
+        gap: 10px;
+    }
+}

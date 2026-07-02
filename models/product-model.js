@@ -13,15 +13,6 @@ const productSchema = mongoose.Schema({
     },
     productImage: {
         type: String,
-    },
-    backgroundColor: {
-        type: String,
-    },
-    panelColor: {
-        type: String,
-    },
-    textColor: {
-        type: String,
     }
 });
 

@@ -1,4 +1,5 @@
 const userModel = require('../models/user-model');
+const adminModel = require('../models/admin-model');
 const bcrypt = require('bcrypt');
 const { generateJwtToken }  = require('../utils/generateJwtToken');
 
@@ -86,6 +87,40 @@ const logoutUser = async (req, res) => {
     }
 }
 
+const loginAdmin = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+        const cleanEmail = email.trim();
+        const registerErrors = {};
+        const loginErrors = {};
+        if (cleanEmail === '') {
+            loginErrors.email = "Email Cannot Be Empty.";
+        }
+        if (password === ''){
+            loginErrors.password = "Password Cannot Be Empty.";
+        }
+        if (Object.keys(loginErrors).length > 0) {
+            return res.render('admin-login', {registerErrors, loginErrors});
+        }
+        const existingAdmin = await adminModel.findOne({email: cleanEmail});
+        if (!existingAdmin) {
+            req.flash('error', 'Email Or Password Is Invalid.');
+            return res.redirect('/admin');
+        }
+        const isPasswordCorrect = await bcrypt.compare(password, existingAdmin.password);
+        if (!isPasswordCorrect) {
+            req.flash('error', 'Email Or Password Is Invalid.');
+            return res.redirect('/admin');
+        }
+        const token = generateJwtToken(existingAdmin);
+        res.cookie('token', token);
+        res.redirect('/admins/admin-panel');
+    } catch (error) {
+        return res.status(500).json({message: "Server Error"});
+    }
+}
+
 module.exports.registerUser = registerUser;
 module.exports.loginUser = loginUser;
 module.exports.logoutUser = logoutUser;
+module.exports.loginAdmin = loginAdmin;

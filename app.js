@@ -5,7 +5,7 @@ const db = require('./config/mongoose-connection');
 const userRouter = require('./routes/userRouter');
 const adminRouter = require('./routes/adminRouter');
 const productRouter = require('./routes/productRouter');
-const landingPageRouter = require('./routes/landingPageRouter');
+const shop = require('./routes/shop');
 require('dotenv').config();
 const expressSession = require('express-session');
 const flash = require('connect-flash');
@@ -35,7 +35,7 @@ app.use((req, res, next) => {
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
 
-app.use('/', landingPageRouter);
+app.use('/', shop);
 app.use('/users', userRouter);
 app.use('/products', productRouter);
 app.use('/admins', adminRouter);

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/admin-panel.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <title>Shop</title>
+</head>
+<body>
+    <%- include('partials/navbar') %>
+    <div class="main-container">
+        <div class="side-container collapsed" id="sidebar">
+            <div class="side-contents">
+                <div class="collection-products">
+                    <div>
+                        <!-- href="/admins/all-products" -->
+                        <a class="allProducts" href="" >All Products</a>
+                    </div>
+                    <div>
+                        <!-- href="/admins/product/create" -->
+                        <a class="createProducts" href="">Create New Product</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="products-container">
+            <div class="no-products">
+                <span>No Products To Display.</span>
+            </div>
+            <div class="all-products">
+                <div class="product">
+                    <div class="product-content">
+                        <img src="https://images.pexels.com/photos/18186105/pexels-photo-18186105.jpeg" alt="">
+                        <div class="product-info">
+                            <p>Product Name</p>
+                            <p>$ 199</p>
+                        </div>
+                        <i class="fa-solid fa-circle-plus"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="create-product-container hideAllProducts">
+            <div class="form">
+                <div class="header">
+                    <h1>Product Details</h1>
+                </div>
+                <form action="/admins/product/create" method="post" id="productDetailsForm" enctype="multipart/form-data">
+                    <div class="formContent">
+                        <input type="file" >
+
+                        <input type="text" class="userInputs" name="productName" id="productName" placeholder="Product Name ...">
+                            
+                        <input type="text" class="userInputs" name="productPrice" id="productPrice" placeholder="Product Price ...">
+                            
+                        <input type="text" class="userInputs" name="discountPrice" id="discountPrice" placeholder="Discount Price ...">
+                            
+                        <input type="submit" class="submit" id="" value="Create New Product" disabled style="cursor: not-allowed;">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="/javascripts/admin-panel.js"></script>
+</body>
+</html>

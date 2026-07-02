@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/shop.css">
+    <title>navbar</title>
+</head>
+<body>
+    <nav class="navbar">
+        <% if(adminData && adminData.products) { %>
+            <div class="nav-left">
+                <button class="sidebar-toggle">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <span class="nav-title">Admin Panel</span>
+            </div>
+        <% } %>
+        <% if(userData) { %>
+            <div class="nav-left">
+                <button class="sidebar-toggle">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <span class="nav-title">SHOP</span>
+            </div>
+        <% } %>
+        <div class="nav-right">
+            <% if (userData) { %>
+                <a href="/users/cart" class="nav-link"> Cart </a>
+                <a href="/users/account" class="nav-link"><img class="account-image" src="/images/<%= userData.profilePicture %>"> <%= userData.fullname %> </a>
+            <% } else { %>
+                <a href="/guest/cart" class="nav-link"> Cart</a>
+                <a href="/" class="nav-link"> <img class="account-image" src="/images/defaultProfilePicture.jpg"> Guest </a>
+            <% } %>
+        </div>
+    </nav>
+</body>
+</html>
