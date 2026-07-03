@@ -1,0 +1,202 @@
+.hideAllProducts {
+    display: none !important;
+}
+
+.create-product-container {
+    width: 80vw;
+    padding: 30px 20px;
+}
+
+.create-product-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 80vw;
+    /* padding: 20px; */
+}
+
+.form {
+    background-color: rgb(35, 35, 35);
+    padding: 30px;
+    border-radius: 8px;
+    flex: 1;
+    min-width: 500px;
+    max-height: 385px;
+}
+
+.header {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 1.8rem;
+    color: #fff;
+}
+
+.formContent {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.userInputs {
+    width: 100%;
+    padding: 12px;
+    background-color: rgb(50, 50, 50);
+    border: 1px solid rgb(70, 70, 70);
+    border-radius: 4px;
+    color: white;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.userInputs:focus {
+    border-color: #2090ff;
+}
+
+/* Target WebKit browsers (Chrome, Safari, Edge, Opera) */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Target Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+/* submit button styling */
+.submit {
+    width: 100%;
+    padding: 12px;
+    background-color: #2090ff;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.submit:hover {
+    background-color: #1176dc;
+}
+
+/* 1. Force the card to stack vertically */
+.product-content {
+    background-color: #ffffff; /* Sets background behind the shirt to white */
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex !important;
+    flex-direction: column !important;    /* CRITICAL: Stacks image on top, text on bottom */
+    width: 250px;              /* Adjust card width as needed */
+    position: relative;        /* Keeps the plus icon inside the card */
+}
+
+/* 2. Style the image to take up the top half */
+.product-content img {
+    width: 100%;
+    height: 220px;             /* Gives the image area a fixed height */
+    object-fit: contain;       /* Keeps the shirt from stretching out of shape */
+    box-sizing: border-box;
+}
+
+/* 3. Force the info box to span the entire bottom width */
+.product-info {
+    position: static !important;
+    margin-top: auto;
+    background-color: #ffffff9c;
+    width: 100%;               /* CRITICAL: Makes it stretch all the way across */
+    padding: 15px 20px;        /* Spacing inside the text area */
+    box-sizing: border-box;    /* Includes padding in the width calculation */
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/* 4. Reset default paragraph margins */
+.product-info p {
+    margin: 0;
+    color: #1a1a1a;
+    font-size: 1.1rem;
+}
+
+/* 5. Position the plus icon perfectly over the bottom banner */
+.fa-circle-plus {
+    position: absolute !important;
+    right: 15px;
+    bottom: 18px;              /* Moves it cleanly inside the peach box */
+    font-size: 1.4rem;
+    color: #000000;
+    cursor: pointer;
+    z-index: 3;                /* Keeps it clickable on top of backgrounds */
+}
+
+/* Flash messages */
+/* Base styling for all alert boxes */
+.alert {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    /* Responsive position: fixed keeps it anchored correctly relative to the screen */
+    position: fixed; 
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%); /* Centers the absolute/fixed element perfectly horizontal */
+    z-index: 9999; /* Guarantees it sits above all other page content elements */
+    
+    /* Responsive sizing rules */
+    width: 90%;          /* Uses almost full width on small mobile screens */
+    max-width: 450px;    /* Prevents it from stretching infinitely on wide desktop monitors */
+    min-height: 50px;    /* Use dynamic min-height instead of fixed height to allow text wrapping */
+    padding: 12px 20px;  /* Fluid inner spacing breathing room */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Soft depth layer */
+    
+    /* Text properties */
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-align: center;
+    word-break: break-word; /* Prevents long error strings from clipping out */
+    color: #ffffff; /* Universal readable text contrast */
+}
+
+/* Color state overrides */
+.alert-danger {
+    background-color: #dc3545; /* Clean accessible red tone */
+    border: 1px solid #b21f2d;
+}
+
+.alert-success {
+    background-color: #198754; /* Balanced, accessible deep green tone */
+    border: 1px solid #146c43;
+}
+
+@media (max-width: 768px) {
+    .create-product-container {
+        width: 100vw;
+    }
+
+    .form{
+        min-width: fit-content;
+        max-height: fit-content;
+    }
+
+    .alert-danger {
+        width: 80%;
+        height: 4%;
+    }
+
+    .alert-success {
+        width: 80%;
+        height: 4%;
+    }
+}

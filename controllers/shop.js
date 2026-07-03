@@ -42,15 +42,36 @@ const renderShop = async (req, res) => {
                 res.clearCookie('token');
                 return res.redirect('/');
             } else {
-                return res.render('shop', { userData: currentSessionUser , adminData : null});
+                return res.render('shop', { userData: isUser , adminData : isAdmin, guestData: null});
             }
         } catch (error) {
             res.clearCookie('token');
         }
     }
-    const userData = null;
-    return res.render('shop', {userData, adminData: null});
+    const guestData = {fullname: 'Guest'};
+    return res.render('shop', {guestData, userData: null, adminData: null});
+}
+
+const renderAdminLogin = async (req, res) => {
+    const loginErrors = {};
+    if(req.cookies.token) {
+        try {
+            const admin = jwt.verify(req.cookies.token, process.env.SECRET_KEY);
+            console.log('admin - token : ', admin);
+            const isAdmin = await adminModel.findOne({_id: admin.id}).select('-password');
+            console.log('current isAdmin :', isAdmin);
+            if (isAdmin) {
+                return res.redirect('/admins/admin-panel/all-products');
+            } else {
+                return res.render('admin-login', {loginErrors})
+            }
+        } catch (error) {
+            res.clearCookie('token');
+        }
+    }
+    return res.render('admin-login', {loginErrors});
 }
 
 module.exports.renderRegisterLogin = renderRegisterLogin;
 module.exports.renderShop = renderShop;
+module.exports.renderAdminLogin = renderAdminLogin;

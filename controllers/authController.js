@@ -78,7 +78,7 @@ const loginUser = async (req, res) => {
 const logoutUser = async (req, res) => {
     try {
         res.clearCookie('token');
-        req.flash('success', 'You Have Been Logged Out Successfully.')
+        req.flash('success', 'You Have Been Logged Out Successfully.');
         res.redirect('/');
     } catch (error) {
         return res.status(500).json({
@@ -114,7 +114,7 @@ const loginAdmin = async (req, res) => {
         }
         const token = generateJwtToken(existingAdmin);
         res.cookie('token', token);
-        res.redirect('/admins/admin-panel');
+        res.redirect('/admins/admin-panel/all-products');
     } catch (error) {
         return res.status(500).json({message: "Server Error"});
     }

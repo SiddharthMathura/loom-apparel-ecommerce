@@ -2,16 +2,12 @@ const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
 const userModel = require('../models/user-model');
-const { renderRegisterLogin, renderShop } = require('../controllers/shop');
+const { renderRegisterLogin, renderShop, renderAdminLogin } = require('../controllers/shop');
 
 router.get('/', renderRegisterLogin);
 
 router.get('/shop', renderShop);
 
-router.get('/admin', (req, res) => {
-    const registerErrors = {};
-    const loginErrors = {};
-    res.render('admin-login', {loginErrors});
-});
+router.get('/admin', renderAdminLogin);
 
 module.exports = router;

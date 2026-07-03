@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <title>All Products</title>
+</head>
+<body>
+    <%- include('partials/navbar') %>
+    <div class="main-container">
+        <div class="side-container collapsed" id="sidebar">
+            <div class="side-contents">
+                <div class="collection-products">
+                    <div>
+                        <!-- href="/admins/all-products" -->
+                        <a class="allProducts" href="/admins/admin-panel/all-products" >All Products</a>
+                    </div>
+                    <div>
+                        <!-- href="/admins/product/create" -->
+                        <a class="createProducts" href="/admins/product/create" >Create New Product</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="products-container">
+            <% if(products.length > 0) { %>
+                <div class="all-products">
+                    <div class="product">
+                        <% products.forEach((product) => { %>
+                            <div class="product-content">
+                                <img src="data:image/jpeg;base64, <%= product.productImage.toString('base64') %>" alt="product-image">
+                                <div class="product-info">
+                                    <p><%= product.productName %></p>
+                                    <p>₹ <%= product.productPrice %></p>
+                                </div>
+                                <i class="fa-solid fa-circle-plus"></i>
+                            </div>
+                        <% })%>
+                    </div>
+                </div>
+            <% } else { %>
+                <div class="no-products">
+                    <span>No Products To Display.</span>
+                </div>
+            <% } %>
+        </div>
+    </div>
+    <script src="/javascripts/admin.js"></script>
+</body>
+</html>

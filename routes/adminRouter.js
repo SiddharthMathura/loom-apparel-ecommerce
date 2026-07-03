@@ -2,9 +2,10 @@ const express = require('express');
 const router = express.Router();
 const adminModel = require('../models/admin-model');
 const { loginAdmin } = require('../controllers/authController');
-const { renderAdminPanel } = require('../controllers/admin');
+const { renderAdminProducts, renderAdminCreateProducts, createProduct } = require('../controllers/admin');
 const { authenticateAdmin } = require('../middlewares/authenticateAdmin');
 const bcrypt = require('bcrypt');
+const upload = require('../config/multer-config');
 
 if (process.env.NODE_ENV === 'development') {
     router.post('/create', async (req, res) => {
@@ -34,6 +35,10 @@ router.get('/', (req, res)  => {
 
 router.post('/login', loginAdmin);
 
-router.get('/admin-panel', authenticateAdmin, renderAdminPanel);
+router.get('/admin-panel/all-products', authenticateAdmin, renderAdminProducts);
+
+router.get('/product/create', authenticateAdmin, renderAdminCreateProducts);
+
+router.post('/product/create', authenticateAdmin, upload.single('productImage'), createProduct);
 
 module.exports = router;

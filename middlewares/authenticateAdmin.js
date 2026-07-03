@@ -9,8 +9,13 @@ const authenticateAdmin = async (req, res, next) => {
         const payload = req.cookies.token;
         const verifyAdmin = jwt.verify(payload, process.env.SECRET_KEY);
         const adminData = await adminModel.findOne({ _id : verifyAdmin.id }).select('-password');
-        req.admin = adminData;
-        next();
+        if (adminData) {
+            req.admin = adminData;
+            next();
+        } else {
+            req.flash('error', 'Not Authorized To View This Page.');
+            return res.redirect('/admin');
+        }
     } catch (error) {
         return res.status(500).json({message: "Server Error"});
     }

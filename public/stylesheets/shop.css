@@ -166,7 +166,6 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: flex-end; /* Keeps items anchored to the bottom */
-    padding: 20px;
     min-height: 280px;
     background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2));
     border-radius: 6px;
@@ -174,7 +173,7 @@ body {
 
 /* Left side container holding Name and Price */
 .product-info {
-    font-weight: 500;
+    font-weight: bolder;
     color: #000000;
     z-index: 2;
     display: flex;
