@@ -1,6 +1,46 @@
-.hideAllProducts {
-    display: none !important;
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: sans-serif;
 }
+
+body {
+    background-color: rgb(24, 24, 24);
+    color: white;
+}
+
+.delete-all-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 18px;
+}
+.delete-all-btn:hover {
+    background-color: #bd2130;
+}
+
+.account-image{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Navbar Toggle Button (Desktop & Mobile view settings) */
+.sidebar-toggle {
+    background: none;
+    border: none;
+    color: #333;
+    font-size: 1.3rem;
+    cursor: pointer;
+    display: none;
+}
+
 
 .create-product-container {
     width: 80vw;
@@ -95,17 +135,9 @@ input[type="number"] {
     overflow: hidden;
     display: flex !important;
     flex-direction: column !important;    /* CRITICAL: Stacks image on top, text on bottom */
-    width: 250px;              /* Adjust card width as needed */
     position: relative;        /* Keeps the plus icon inside the card */
 }
 
-/* 2. Style the image to take up the top half */
-.product-content img {
-    width: 100%;
-    height: 220px;             /* Gives the image area a fixed height */
-    object-fit: contain;       /* Keeps the shirt from stretching out of shape */
-    box-sizing: border-box;
-}
 
 /* 3. Force the info box to span the entire bottom width */
 .product-info {
@@ -118,6 +150,7 @@ input[type="number"] {
     display: flex;
     flex-direction: column;
     gap: 5px;
+    z-index: 3;
 }
 
 /* 4. Reset default paragraph margins */
@@ -125,17 +158,6 @@ input[type="number"] {
     margin: 0;
     color: #1a1a1a;
     font-size: 1.1rem;
-}
-
-/* 5. Position the plus icon perfectly over the bottom banner */
-.fa-circle-plus {
-    position: absolute !important;
-    right: 15px;
-    bottom: 18px;              /* Moves it cleanly inside the peach box */
-    font-size: 1.4rem;
-    color: #000000;
-    cursor: pointer;
-    z-index: 3;                /* Keeps it clickable on top of backgrounds */
 }
 
 /* Flash messages */
@@ -181,6 +203,10 @@ input[type="number"] {
 }
 
 @media (max-width: 768px) {
+    .products-container {
+        width: 100vw;
+    }
+    
     .create-product-container {
         width: 100vw;
     }

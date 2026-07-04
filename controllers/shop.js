@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 const userModel = require("../models/user-model");
 const adminModel = require("../models/admin-model");
+const productModel = require('../models/product-model');
 
 const renderRegisterLogin = async (req, res) => {
     if(req.cookies.token){
@@ -30,6 +31,7 @@ const renderRegisterLogin = async (req, res) => {
 };
 
 const renderShop = async (req, res) => {
+    const allProducts = await productModel.find();
     if(req.cookies.token) {
         try {
             const user = jwt.verify(req.cookies.token, process.env.SECRET_KEY);
@@ -42,14 +44,14 @@ const renderShop = async (req, res) => {
                 res.clearCookie('token');
                 return res.redirect('/');
             } else {
-                return res.render('shop', { userData: isUser , adminData : isAdmin, guestData: null});
+                return res.render('shop', { userData: isUser , adminData : isAdmin, guestData: null, products: allProducts});
             }
         } catch (error) {
             res.clearCookie('token');
         }
     }
     const guestData = {fullname: 'Guest'};
-    return res.render('shop', {guestData, userData: null, adminData: null});
+    return res.render('shop', {guestData, userData: null, adminData: null, products: allProducts});
 }
 
 const renderAdminLogin = async (req, res) => {

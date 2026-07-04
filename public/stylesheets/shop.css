@@ -23,7 +23,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 50px;
+    padding: 0 30px;
     z-index: 3; /* Sits above everything, including the sidebar */
      /* Glossy Frost Recipe */
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.15));
@@ -38,7 +38,7 @@ body {
 .nav-left {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 4px;
 }
 
 .nav-title {
@@ -51,7 +51,7 @@ body {
 .nav-right {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 10px;
 }
 
 .nav-link {
@@ -167,26 +167,93 @@ body {
     justify-content: space-between;
     align-items: flex-end; /* Keeps items anchored to the bottom */
     min-height: 280px;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2));
     border-radius: 6px;
 }
 
-/* Left side container holding Name and Price */
-.product-info {
-    font-weight: bolder;
-    color: #000000;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    gap: 5px; /* Adds space between name and price */
+/* 1. Force the card to stack vertically */
+.product-content {
+    background-color: #ffffff; /* Sets background behind the shirt to white */
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex !important;
+    flex-direction: column !important;    /* CRITICAL: Stacks image on top, text on bottom */
+    position: relative;        /* Keeps the plus icon inside the card */
 }
 
-/* Icons (Right aligned by flex justify-content) */
-.product-content i {
-    z-index: 2;
-    font-size: 1.5rem;
+
+/* 3. Force the info box to span the entire bottom width */
+.product-info {
+    position: static !important;
+    margin-top: auto;
+    background-color: #ffffff9c;
+    width: 100%;               /* CRITICAL: Makes it stretch all the way across */
+    padding: 15px 20px;        /* Spacing inside the text area */
+    box-sizing: border-box;    /* Includes padding in the width calculation */
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    z-index: 3;
+}
+
+/* 4. Reset default paragraph margins */
+.product-info p {
+    font-weight: bolder;
+    margin: 0;
+    color: #1a1a1a;
+    font-size: 1.1rem;
+}
+
+/* 5. Position the plus icon perfectly over the bottom banner */
+.fa-circle-plus {
+    position: absolute !important;
+    right: 15px;
+    bottom: 28px;              /* Moves it cleanly inside the peach box */
+    font-size: 1.4rem;
     color: #000000;
     cursor: pointer;
+    z-index: 3;                /* Keeps it clickable on top of backgrounds */
+}
+
+/* Flash messages */
+/* Base styling for all alert boxes */
+.alert {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    /* Responsive position: fixed keeps it anchored correctly relative to the screen */
+    position: fixed; 
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%); /* Centers the absolute/fixed element perfectly horizontal */
+    z-index: 9999; /* Guarantees it sits above all other page content elements */
+    
+    /* Responsive sizing rules */
+    width: 90%;          /* Uses almost full width on small mobile screens */
+    max-width: 450px;    /* Prevents it from stretching infinitely on wide desktop monitors */
+    min-height: 50px;    /* Use dynamic min-height instead of fixed height to allow text wrapping */
+    padding: 12px 20px;  /* Fluid inner spacing breathing room */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Soft depth layer */
+    
+    /* Text properties */
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-align: center;
+    word-break: break-word; /* Prevents long error strings from clipping out */
+    color: #ffffff; /* Universal readable text contrast */
+}
+
+/* Color state overrides */
+.alert-danger {
+    background-color: #dc3545; /* Clean accessible red tone */
+    border: 1px solid #b21f2d;
+}
+
+.alert-success {
+    background-color: #198754; /* Balanced, accessible deep green tone */
+    border: 1px solid #146c43;
 }
 
 /* Mobile Responsive Styles */
@@ -229,5 +296,15 @@ body {
     .side-contents {
         display: flex;
         gap: 10px;
+    }
+
+    alert-danger {
+        width: 80%;
+        height: 4%;
+    }
+
+    .alert-success {
+        width: 80%;
+        height: 4%;
     }
 }

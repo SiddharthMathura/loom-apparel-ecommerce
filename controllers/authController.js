@@ -2,6 +2,7 @@ const userModel = require('../models/user-model');
 const adminModel = require('../models/admin-model');
 const bcrypt = require('bcrypt');
 const { generateJwtToken }  = require('../utils/generateJwtToken');
+const jwt = require('jsonwebtoken');
 
 const registerUser = async (req, res) => {
     try {
@@ -77,9 +78,15 @@ const loginUser = async (req, res) => {
 
 const logoutUser = async (req, res) => {
     try {
+        const isLogged = jwt.verify(req.cookies.token, process.env.SECRET_KEY);
+        const isAdmin = await adminModel.findOne({_id: isLogged.id });
         res.clearCookie('token');
         req.flash('success', 'You Have Been Logged Out Successfully.');
-        res.redirect('/');
+        if (isAdmin) {
+            return res.redirect('/admin');
+        } else {
+            return res.redirect('/');
+        }
     } catch (error) {
         return res.status(500).json({
             message: "Internal Server Error occurred.",

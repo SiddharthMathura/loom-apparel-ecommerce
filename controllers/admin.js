@@ -35,6 +35,17 @@ const createProduct = async (req, res) => {
     }
 };
 
+const deleteAllProducts = async (req, res) => {
+    try {
+        const result = await productModel.deleteMany({});
+        console.log(`Successfully deleted ${result.deletedCount} products.`);
+        res.redirect('/admins/admin-panel/all-products');
+    } catch (error) {
+        res.status(500).json({message:'Internal Server Error: Failed to wipe products.'});
+    }
+};
+
 module.exports.renderAdminProducts = renderAdminProducts;
 module.exports.renderAdminCreateProducts = renderAdminCreateProducts;
 module.exports.createProduct = createProduct;
+module.exports.deleteAllProducts = deleteAllProducts;

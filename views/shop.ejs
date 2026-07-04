@@ -9,6 +9,17 @@
 </head>
 <body>
     <%- include('partials/navbar') %>
+    <% if (success_msg && success_msg.length > 0) { %>
+            <div class="alert alert-success">
+                <%= success_msg %>
+            </div>
+        <% } %>
+
+        <% if (error_msg && error_msg.length > 0) { %>
+            <div class="alert alert-danger">
+                <%= error_msg %>
+            </div>
+        <% } %>
     <div class="main-container">
         <div class="side-container collapsed" id="sidebar">
             <div class="side-contents">
@@ -35,21 +46,28 @@
             </div>
         </div>
         <div class="products-container">
-            <div class="no-products">
-                <span>No Products To Display.</span>
-            </div>
-            <div class="all-products">
-                <div class="product">
-                    <div class="product-content">
-                        <img src="https://images.pexels.com/photos/18186105/pexels-photo-18186105.jpeg" alt="">
-                        <div class="product-info">
-                            <p>Product Name</p>
-                            <p>$ 199</p>
-                        </div>
-                        <i class="fa-solid fa-circle-plus"></i>
+            <% if(products.length > 0) { %>
+                <div class="all-products">
+                    <div class="product">
+                        <% products.forEach((product) => { %>
+                            <div class="product-content">
+                                <img src="data:image/jpeg;base64, <%= product.productImage.toString('base64') %>" alt="product-image">
+                                <div class="product-info">
+                                    <p><%= product.productName %></p>
+                                    <p>₹ <%= product.productPrice %></p>
+                                </div>
+                                <% if(userData) { %>
+                                    <a href="/users/add-to-cart/<%= product._id %>"><i class="fa-solid fa-circle-plus"></i></a>
+                                <% } %>
+                            </div>
+                        <% })%>
                     </div>
                 </div>
-            </div>
+            <% } else { %>
+                <div class="no-products">
+                    <span>No Products To Display.</span>
+                </div>
+            <% } %>
         </div>
     </div>
     <script src="/javascripts/shop.js"></script>

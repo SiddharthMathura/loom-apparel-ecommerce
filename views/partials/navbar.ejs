@@ -28,14 +28,15 @@
             <% if (userData) { %>
                 <a href="/users/cart" class="nav-link"> Cart </a>
                 <a href="/users/account" class="nav-link"><img class="account-image" src="/images/<%= userData.profilePicture %>"> <%= userData.fullname %> </a>
+                <a href="/users/logout" style="color: red; text-decoration: none;">Logout</a>
             <% } %> 
             <% if (guestData) { %>
-                <a href="/guest/cart" class="nav-link"> Cart</a>
                 <a href="/" class="nav-link"> <img class="account-image" src="/images/defaultProfilePicture.jpg"> <%= guestData.fullname %> </a>
             <% } %>
             <% if (adminData && adminData.products) { %>
                 <!-- <a href="/admins/cart" class="nav-link"> Cart </a> -->
                 <a href="/admins/account" class="nav-link"><img class="account-image" src="/images/<%= adminData.profilePicture %>"> <%= adminData.fullname %> </a>
+                <a href="/users/logout" style="color: red; text-decoration: none;">Logout</a>
             <% } %>
         </div>
     </nav>

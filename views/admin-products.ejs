@@ -26,6 +26,9 @@
         </div>
         <div class="products-container">
             <% if(products.length > 0) { %>
+                <form id="deleteAllForm" action="/admins/delete-all-products" method="POST">
+                    <button type="submit" class="delete-all-btn deleteProducts">Delete All Products</button>
+                </form>
                 <div class="all-products">
                     <div class="product">
                         <% products.forEach((product) => { %>
@@ -35,7 +38,6 @@
                                     <p><%= product.productName %></p>
                                     <p>₹ <%= product.productPrice %></p>
                                 </div>
-                                <i class="fa-solid fa-circle-plus"></i>
                             </div>
                         <% })%>
                     </div>

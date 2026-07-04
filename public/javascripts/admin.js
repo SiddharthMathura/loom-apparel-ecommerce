@@ -51,6 +51,18 @@ const formValidation = (formId) => {
 }
 formValidation('productDetailsForm');
 
+// to delete every product from the db
+const deleteAllForm = document.querySelector('#deleteAllForm');
+    if (deleteAllForm) {
+        deleteAllForm.addEventListener('submit', function(event) {
+            event.preventDefault(); 
+            const userConfirmed = confirm("⚠️ WARNING: Are you absolutely sure you want to delete EVERY product? This action cannot be undone.");
+            if (userConfirmed) {
+                this.submit();
+            }
+        });
+    }
+
 // Check if the page was loaded from the browser's back/forward cache
 window.addEventListener('pageshow', function (event) {
     if (event.persisted) {

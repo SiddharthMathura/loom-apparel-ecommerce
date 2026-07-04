@@ -17,10 +17,12 @@ const userSchema = mongoose.Schema({
         type: String,
         default: 'defaultProfilePicture.PNG'
     },
-    cart: {
-        type: Array,
-        default: [],
-    },
+    cart: [
+        {
+            type: mongoose.Types.ObjectId,
+            ref: 'product',
+        }
+    ],
     orders: {
         type: Array,
         default: [],
