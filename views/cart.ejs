@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/cart.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <title>Cart</title>
+</head>
+<body>
+    <%- include('partials/navbar') %>
+    <% if (success_msg && success_msg.length > 0) { %>
+            <div class="alert alert-success">
+                <%= success_msg %>
+            </div>
+        <% } %>
+
+        <% if (error_msg && error_msg.length > 0) { %>
+            <div class="alert alert-danger">
+                <%= error_msg %>
+            </div>
+        <% } %>
+    <div class="main-container">
+        <div class="side-container collapsed" id="sidebar">
+            <div class="side-contents">
+                <div class="collection-products">
+                    <div>
+                        <a href="/shop"><i class="fa-solid fa-arrow-rotate-left"></i> Continue Shopping...</a>
+                    </div>
+                    <div>
+                        <a href="/users/account">My Account</a>
+                    </div>
+                    <div>
+                        <a href="/users/all-orders">My Orders</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="products-container">
+            <% if(userData && userData.cart.length > 0) { %>
+                <div class="all-products">
+                    <div class="product">
+                        <% userData.cart.forEach((product) => { %>
+                            <div class="product-content">
+                                <img src="data:image/jpeg;base64, <%= product.productId.productImage.toString('base64') %>" alt="product-image">
+                                <div class="product-info">
+                                    <p><%= product.productId.productName %></p>
+                                    <p>₹ <%= product.productId.productPrice %></p>
+                                </div>
+                                <div class="quantity-controls">
+                                    <a href="/users/remove-from-cart/<%= product.productId._id %>" class="control-btn minus">
+                                        <i class="fa-solid fa-circle-minus"></i>
+                                    </a >
+                                    <span class="quantity-count"><%= product.quantity || 0 %></span>
+                                    <a href="/users/add-to-cart/<%= product.productId._id %>" class="control-btn plus">
+                                        <i class="fa-solid fa-circle-plus"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        <% })%>
+                    </div>
+                </div>
+            <% } else { %>
+                <div class="no-products">
+                    <span>Cart Is Empty ...</span>
+                </div>
+            <% } %>
+            <% if(userData && userData.cart.length > 0) { %>
+                <div class="main">
+                    <div class="form">
+                        <div class="header">
+                            <h1>Order Summary</h1>
+                        </div>
+                        <form action="/users/order-confirmation" method="get">
+                            <div class="formContent">
+                                <div class="order-details-conatainer">
+                                    <div class="order-details">
+                                        <div class="order-details-sub-headings">Products</div>
+                                            <% userData.cart.forEach((product) => { %>
+                                                <div><%= product.productId.productName %> x <%= product.quantity %> </div>
+                                            <% }) %>
+                                            <div>Total</div>
+                                        </div>
+                                    <div class="order-details">
+                                        <% let grandTotal = 0; %>
+                                        <div class="order-details-sub-headings">Price</div>
+                                            <% userData.cart.forEach((product) => { %>
+                                                <% grandTotal += (product.productId.productPrice * product.quantity); %>
+                                                <div>₹ <%= product.productId.productPrice * product.quantity %> </div>
+                                            <% }) %>
+                                            <div>₹ <%= grandTotal %></div>
+                                        </div>
+                                </div>
+                                <hr style="border: none; border-top: 2px dotted #ffffffa6;">
+                                <div class="order-details-conatainer">
+                                    <div class="order-details">
+                                        <div>Delivery Charges</div>
+                                        <div>Bill Total</div>
+                                    </div>
+                                    <div class="order-details">
+                                        <div>₹ 49 </div> 
+                                        <div>₹ <%= grandTotal + 49 %></div>
+                                    </div>
+                                </div>
+                                <input type="submit" class="submit" value="Place Order">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+    </div>
+    <script src="/javascripts/cart.js"></script>
+</body>
+</html>

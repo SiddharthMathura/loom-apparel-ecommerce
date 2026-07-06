@@ -1,0 +1,121 @@
+/* Container box holding both action links and the text counter badge */
+.quantity-controls {
+    position: absolute !important;
+    right: 15px !important;
+    bottom: 30px !important;    /* Anchors everything cleanly inside the banner */
+    
+    /* CRITICAL RULES FOR HORIZONTAL ALIGNMENT */
+    display: flex !important;
+    flex-direction: row !important; /* Forces side-by-side layout */
+    align-items: center !important;  /* Centers them vertically together */
+    gap: 8px !important;           /* Clean horizontal spacing between items */
+    
+    width: auto !important;         /* Prevents it from collapsing or shrinking */
+    z-index: 10 !important;
+}
+
+/* Reset anchor tag layout block behaviors */
+.quantity-controls a {
+    text-decoration: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* Target fontawesome vector icons sizes and colors */
+.quantity-controls i {
+    font-size: 1.4rem !important;
+    color: #000000 !important;
+    cursor: pointer !important;
+    position: static !important;    /* Removes any individual absolute overrides */
+    margin: 0 !important;
+}
+
+/* Clear styling format for the inner text number element */
+.quantity-count {
+    font-size: 1.1rem !important;
+    font-weight: bold !important;
+    color: #000000 !important;
+    min-width: 18px !important;     /* Keeps width uniform so layout doesn't jump */
+    text-align: center !important;
+    line-height: 1 !important;
+    user-select: none !important;
+}
+
+.product-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.main {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    padding: 20px;
+    max-width: 1000px;
+    width: 100%;
+}
+
+.form {
+    background-color: rgb(35, 35, 35);
+    padding: 30px;
+    border-radius: 8px;
+    flex: 1;
+    max-width: 500px;
+}
+
+.header {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 1.8rem;
+    color: #fff;
+}
+
+.formContent {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.order-details-conatainer {
+    display: flex;
+    justify-content: space-around;
+}
+
+.order-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+    color: #ffffffa6;
+}
+
+.order-details-sub-headings {
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+/* submit button styling */
+.submit {
+    width: 100%;
+    padding: 12px;
+    background-color: #2090ff;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.submit:hover {
+    background-color: #1176dc;
+}

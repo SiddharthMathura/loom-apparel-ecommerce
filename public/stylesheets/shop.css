@@ -185,7 +185,7 @@ body {
 .product-info {
     position: static !important;
     margin-top: auto;
-    background-color: #ffffff9c;
+    background-color: #ffffffbf;
     width: 100%;               /* CRITICAL: Makes it stretch all the way across */
     padding: 15px 20px;        /* Spacing inside the text area */
     box-sizing: border-box;    /* Includes padding in the width calculation */

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/order.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <title>Orders</title>
+</head>
+<body>
+    <%- include('partials/navbar') %>
+    <% if (success_msg && success_msg.length > 0) { %>
+            <div class="alert alert-success">
+                <%= success_msg %>
+            </div>
+        <% } %>
+
+        <% if (error_msg && error_msg.length > 0) { %>
+            <div class="alert alert-danger">
+                <%= error_msg %>
+            </div>
+        <% } %>
+    <div class="main-container">
+        <div class="side-container collapsed" id="sidebar">
+            <div class="side-contents">
+                <div class="collection-products">
+                    <div>
+                        <a href="/shop"><i class="fa-solid fa-arrow-rotate-left"></i> Continue Shopping...</a>
+                    </div>
+                    <div>
+                        <a href="/users/account">My Account</a>
+                    </div>
+                    <div>
+                        <a href="/users/cart">My Cart</a>
+                    </div>
+                    <div>
+                        <a href="/users/all-orders">My Orders</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="products-container">
+            <% if(userData && userData.orders.length > 0) { %>
+                <form id="deleteAllForm" action="/users/delete-all-order-history" method="POST">
+                    <button type="submit" class="delete-all-btn deleteProducts">Delete All Order History</button>
+                </form>
+                <% userData.orders.forEach((order) => { %>
+                    <div class="main">
+                        <div class="form">
+                            <div class="header">
+                                <h1>Ordered Date: <%= new Date(order.purchaseDate).toDateString() %></h1>
+                            </div>
+                            <form>
+                                <div class="formContent">
+                                    <div class="order-details-conatainer">
+                                        <div class="order-details">
+                                            <div class="order-details-sub-headings">Products</div>
+                                                <% order.items.forEach((product) => { %>
+                                                    <div><%= product.productId.productName %> x <%= product.quantity %> </div>
+                                                <% }) %>
+                                                <div>Total</div>
+                                            </div>
+                                        <div class="order-details">
+                                            <% let grandTotal = 0; %>
+                                            <div class="order-details-sub-headings">Price</div>
+                                                <% order.items.forEach((product) => { %>
+                                                    <% grandTotal += (product.productId.productPrice * product.quantity); %>
+                                                    <div>₹ <%= product.productId.productPrice * product.quantity %> </div>
+                                                <% }) %>
+                                                <div>₹ <%= grandTotal %></div>
+                                            </div>
+                                    </div>
+                                    <hr style="border: none; border-top: 2px dotted #ffffffa6;">
+                                    <div class="order-details-conatainer">
+                                        <div class="order-details">
+                                            <div>Delivery Charges</div>
+                                            <div>Amount Paid</div>
+                                        </div>
+                                        <div class="order-details">
+                                            <div>₹ 49 </div> 
+                                            <div>₹ <%= order.totalAmount     + 49 %></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                <% }) %>
+            <% } else { %>
+                <div class="no-products">
+                    <span>You have Not Placed Any Orders Yet.</span>
+                </div>
+            <% } %>
+        </div>
+    </div>
+    <script src="/javascripts/cart.js"></script>
+</body>
+</html>
