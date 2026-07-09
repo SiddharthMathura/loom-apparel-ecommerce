@@ -1,10 +1,6 @@
 # 🛍️ Loom-Apparel - Full-Stack E-Commerce Platform
 
-[![Node.js](https://badgen.net)](https://nodejs.org)
-[![Express.js](https://badgen.net)](https://expressjs.com)
-[![MongoDB](https://badgen.net)](https://mongodb.com)
-[![JWT](https://badgen.net)](https://jwt.io)
-
+> **Tech Stack Core:** 🟢 **Node.js** | 💻 **Express.js** | 🍃 **MongoDB** | 🔐 **JSON Web Tokens (JWT)**
 
 A robust, production-ready full-stack e-commerce web application built from scratch. This project was developed to master enterprise-level industry standards, MVC architecture, secure authentication patterns, and scalable data modeling.
 
