@@ -20,7 +20,6 @@ const createProduct = async (req, res) => {
     const productPrice = Number(req.body.productPrice);
     const discountPrice = Number(req.body.discountPrice);
     const productImage = req.file.buffer;
-    console.log({ productName, productPrice, discountPrice }); 
     try {
         const createdProduct = await productModel.create({
             productName,
@@ -38,7 +37,6 @@ const createProduct = async (req, res) => {
 const deleteAllProducts = async (req, res) => {
     try {
         const result = await productModel.deleteMany({});
-        console.log(`Successfully deleted ${result.deletedCount} products.`);
         res.redirect('/admins/admin-panel/all-products');
     } catch (error) {
         res.status(500).json({message:'Internal Server Error: Failed to wipe products.'});
