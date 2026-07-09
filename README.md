@@ -1,4 +1,4 @@
-# 🛍️ ThreadCraft - Full-Stack E-Commerce Platform
+# 🛍️ Loom-Apparel - Full-Stack E-Commerce Platform
 
 [![Node.js](https://shields.io)](https://nodejs.org)
 [![Express.js](https://shields.io)](https://expressjs.com)
