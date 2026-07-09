@@ -1,9 +1,11 @@
 # 🛍️ Loom-Apparel - Full-Stack E-Commerce Platform
 
-[![Node.js](https://shields.io)](https://nodejs.org)
-[![Express.js](https://shields.io)](https://expressjs.com)
-[![MongoDB](https://shields.io)](https://mongodb.com)
-[![JWT](https://shields.io)](https://jwt.io)
+<p align="left">
+  <img src="https://shields.io" alt="Node.js" />
+  <img src="https://shields.io" alt="Express" />
+  <img src="https://shields.io" alt="MongoDB" />
+  <img src="https://shields.io" alt="JWT" />
+</p>
 
 
 A robust, production-ready full-stack e-commerce web application built from scratch. This project was developed to master enterprise-level industry standards, MVC architecture, secure authentication patterns, and scalable data modeling.
