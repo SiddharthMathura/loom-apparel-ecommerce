@@ -4,10 +4,7 @@ const { registerUser, loginUser, logoutUser } = require('../controllers/authCont
 const { authenticateUser } = require('../middlewares/authenticateUser');
 const { addProductsToCart, renderCart, removeFromCart, placeOrder } = require('../controllers/cart');
 const { renderOrderPage, deleteOrderHistory } = require('../controllers/order');
-
-router.get('/', (req, res) => {
-    res.send('user Router');
-});
+const { renderUserUnderContructionPage } = require('../controllers/shop');
 
 router.post('/register', registerUser);
 
@@ -26,5 +23,7 @@ router.get('/order-confirmation', authenticateUser, placeOrder);
 router.get('/all-orders', authenticateUser, renderOrderPage);
 
 router.post('/delete-all-order-history', authenticateUser, deleteOrderHistory);
+
+router.get('/account', authenticateUser ,renderUserUnderContructionPage);
 
 module.exports = router;

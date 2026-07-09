@@ -74,6 +74,53 @@ const renderAdminLogin = async (req, res) => {
     return res.render('admin-login', {loginErrors});
 }
 
+const renderUserUnderContructionPage = async (req, res) => {
+    try {
+        if(req.user) {
+            const userData = await userModel.findOne({_id: req.user.id});
+            return res.render('user-under-contruction-page', {userData, adminData: null, guestData: null});
+        }
+    } catch (error) {
+        return res.status(500).json({message: "Server Error"});
+    }
+}
+
+const renderAdminUnderContructionPage = async (req, res) => {
+    try {
+        if(req.admin) {
+            const adminData = await adminModel.findOne({_id: req.admin.id});
+            return res.render('admin-under-contruction-page', {userData: null, adminData, guestData: null});
+        }
+    } catch (error) {
+        return res.status(500).json({message: "Server Error"});
+    }
+}
+
+const renderShopUnderContructionPage = async (req, res) => {
+    if(req.cookies.token) {
+        try {
+            const user = jwt.verify(req.cookies.token, process.env.SECRET_KEY);
+            const isUser = await userModel.findOne({_id: user.id}).select('-password');
+            const isAdmin = await adminModel.findOne({_id: user.id}).select('-password');
+            const currentSessionUser = isUser || isAdmin;
+            console.log('current seesion :', currentSessionUser);
+            if (!currentSessionUser) {
+                res.clearCookie('token');
+                return res.redirect('/');
+            } else {
+                return res.render('shop-under-contruction-page', { userData: isUser , adminData : isAdmin, guestData: null});
+            }
+        } catch (error) {
+            return res.status(500).json({message: "Server Error"});
+        }
+    }
+    const guestData = {fullname: 'Guest'};
+    return res.render('shop-under-contruction-page', {guestData, userData: null, adminData: null});
+}
+
 module.exports.renderRegisterLogin = renderRegisterLogin;
 module.exports.renderShop = renderShop;
 module.exports.renderAdminLogin = renderAdminLogin;
+module.exports.renderUserUnderContructionPage = renderUserUnderContructionPage;
+module.exports.renderAdminUnderContructionPage = renderAdminUnderContructionPage;
+module.exports.renderShopUnderContructionPage = renderShopUnderContructionPage;

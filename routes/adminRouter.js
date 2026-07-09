@@ -6,6 +6,7 @@ const { renderAdminProducts, renderAdminCreateProducts, createProduct, deleteAll
 const { authenticateAdmin } = require('../middlewares/authenticateAdmin');
 const bcrypt = require('bcrypt');
 const upload = require('../config/multer-config');
+const { renderAdminUnderContructionPage } = require('../controllers/shop');
 
 if (process.env.NODE_ENV === 'development') {
     router.post('/create', async (req, res) => {
@@ -29,10 +30,6 @@ if (process.env.NODE_ENV === 'development') {
     });
 }
 
-router.get('/', (req, res)  => {
-    res.send('admin Router');
-});
-
 router.post('/login', loginAdmin);
 
 router.get('/admin-panel/all-products', authenticateAdmin, renderAdminProducts);
@@ -42,5 +39,7 @@ router.get('/product/create', authenticateAdmin, renderAdminCreateProducts);
 router.post('/product/create', authenticateAdmin, upload.single('productImage'), createProduct);
 
 router.post('/delete-all-products', authenticateAdmin, deleteAllProducts);
+
+router.get('/account', authenticateAdmin, renderAdminUnderContructionPage);
 
 module.exports = router;
