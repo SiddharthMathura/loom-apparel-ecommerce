@@ -5,6 +5,7 @@
 [![MongoDB](https://shields.io)](https://mongodb.com)
 [![JWT](https://shields.io)](https://jwt.io)
 
+
 A robust, production-ready full-stack e-commerce web application built from scratch. This project was developed to master enterprise-level industry standards, MVC architecture, secure authentication patterns, and scalable data modeling.
 
 ---
